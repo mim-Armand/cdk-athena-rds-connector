@@ -1,6 +1,6 @@
-# Welcome to your CDK TypeScript project
 
-This is a blank project for CDK development with TypeScript.
+
+Creates an RDS lambda connector for Athena queries
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
