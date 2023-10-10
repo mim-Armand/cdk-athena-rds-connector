@@ -11,7 +11,6 @@ export class CdkAthenaRdsConnectorStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        // const dbName = cdk.Fn.importValue('AthenaDatabaseNameOutput-2');
         const dbInstanceEndpointAddress = cdk.Fn.importValue('dbInstanceEndpointAddress-2');
         const dbInstanceEndpointPort = cdk.Fn.importValue('dbInstanceEndpointPort-2');
         const dbSecurityGroupId = cdk.Fn.importValue('dbSecurityGroupId-2');
@@ -19,13 +18,10 @@ export class CdkAthenaRdsConnectorStack extends cdk.Stack {
 
         const secretsName = 'rds-db-secrets';
         const LambdaFunctionName = 'athenardsconnect-cdk';
-
-        // const dbSecrets = new secretsmanager.Secret.fromSecretNameV2(Construct, 'dbSecretsId', secretsName);
-        // const value1 = dbSecrets.secretValueFromJson('KeyName1').toString();
+        const bucketName = "my-spill-bucket-237567";
 
 
         // Create the Spillage S3 bucket if not already existing:
-        const bucketName = "my-spill-bucket-237567";
         new s3.Bucket(this, 'AthenaSpillBucket', {
             bucketName: bucketName,
             versioned: false,
